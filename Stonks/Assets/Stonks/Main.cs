@@ -12,12 +12,18 @@ public class Main : MonoBehaviour
     public string GetAdvText1;
     public string GetAdvText2;
     public string GetAdvText3;
-    public GameObject inputField;
+    public string GetProText1;
+    public string GetProText2;
+    public string GetProText3;
+    public GameObject inputField1;
     public GameObject inputField3;
     public GameObject inputField2;
     public GameObject inputField4;
     public GameObject inputField5;
     public GameObject inputField6;
+    public GameObject inputField7;
+    public GameObject inputField8;
+    public GameObject inputField9;
     public List<string> NumbersList;
     public int PlayerScore;
     public int StartingMoney = 1000;
@@ -29,7 +35,7 @@ public class Main : MonoBehaviour
     public int Adv2;
     public int Dev3;
     public int Pro3;
-    public int Adv3;
+    public int Adv3; 
     public int UnitPrice1 = 150;
     public int UnitPrice2 = 150;
     public int UnitPrice3 = 150;
@@ -39,7 +45,10 @@ public class Main : MonoBehaviour
     public int InputAdvInt4;
     public int InputAdvInt5;
     public int InputAdvInt6;
-
+    public int InputProInt1;
+    public int InputProInt2;
+    public int InputProInt3;
+ 
     /*Attempted use of Ienumerables, decided to just declare ints with rangdom.range within the Adv class
      * IEnumerable<int> AdvDice;
     IEnumerable<int> AdvDice1 = Enumerable.Range(1, 15);
@@ -49,15 +58,15 @@ public class Main : MonoBehaviour
     IEnumerable<int> AdvDice5 = Enumerable.Range(1, 6);
     IEnumerable<int> AdvDice6 = Enumerable.Range(1, 4);
     */
-    public List<string> Prod1 = new List<string>()
+    public List<string> ProList1 = new List<string>()
     {
         "1","2"
     };
-    public List<string> Prod2 = new List<string>()
+    public List<string> ProList2 = new List<string>()
     {
         "1","2"
     };
-    public List<string> Prod3 = new List<string>()
+    public List<string> ProList3 = new List<string>()
     {
         "1","2"
     };
@@ -68,11 +77,17 @@ public class Main : MonoBehaviour
     }
     void Update()
     {
-        CategoryInvestmentAdv();
+        getDevInput();
+        DevInvest();
+        CategoryInvestmentDev();
+        if(InputDevInt1 != 0)
+        {
+            Debug.Log(InputDevInt1);
+        }
     }
     public void getDevInput()
     {
-        GetDevText1 = inputField.GetComponent<Text>().text;
+        GetDevText1 = inputField1.GetComponent<Text>().text;
         GetDevText2 = inputField2.GetComponent<Text>().text;
         GetDevText3 = inputField3.GetComponent<Text>().text;
     }
@@ -159,42 +174,54 @@ public class Main : MonoBehaviour
             NumbersList.Add(GetText3);
         }*/
     }
-    public void CategoryInvestmentProd()
+    public void getProInput()
     {
-        if (Pro == 300)
+        GetProText1 = inputField7.GetComponent<Text>().text;
+        GetProText2 = inputField8.GetComponent<Text>().text;
+        GetProText3 = inputField9.GetComponent<Text>().text;
+    }
+    public void ProInvest()
+    {
+        int.TryParse(GetProText1, out InputProInt1);
+        int.TryParse(GetProText2, out InputProInt2);
+        int.TryParse(GetProText3, out InputProInt3);
+    }
+    public void CategoryInvestmentPro()
+    {
+        if (InputProInt1 == 300)
         {
-            Prod1.Add("3");
+            ProList1.Add("3");
         }
-        else if (Pro == 450)
+        else if (InputProInt1 == 450)
         {
-            Prod1.AddRange(new List<string> { "3", "4" });
-        }else if(Pro == 700) 
+            ProList1.AddRange(new List<string> { "3", "4" });
+        }else if(InputProInt1 == 700) 
         {
-            Prod1.AddRange(new List<string> { "3,4,5" });
+            ProList1.AddRange(new List<string> { "3,4,5" });
         }
-        if (Pro2 == 300)
+        if (InputProInt2 == 300)
         {
-            Prod2.Add("3");
+            ProList2.Add("3");
         }
-        else if (Pro2 == 450)
+        else if (InputProInt2 == 450)
         {
-            Prod2.AddRange(new List<string> { "3", "4" });
+            ProList2.AddRange(new List<string> { "3", "4" });
         }
-        else if (Pro2 == 700)
+        else if (InputProInt2 == 700)
         {
-            Prod2.AddRange(new List<string> { "3,4,5" });
+            ProList2.AddRange(new List<string> { "3,4,5" });
         }
-        if (Pro3 == 300)
+        if (InputProInt3 == 300)
         {
-            Prod3.Add("3");
+            ProList3.Add("3");
         }
-        else if (Pro3 == 450)
+        else if (InputProInt3 == 450)
         {
-            Prod3.AddRange(new List<string> { "3", "4" });
+            ProList3.AddRange(new List<string> { "3", "4" });
         }
-        else if (Pro3 == 700)
+        else if (InputProInt3 == 700)
         {
-            Prod3.AddRange(new List<string> { "3,4,5" });
+            ProList3.AddRange(new List<string> { "3,4,5" });
         }
     }
     public void GetAdvInput()
@@ -203,7 +230,7 @@ public class Main : MonoBehaviour
         GetAdvText2 = inputField5.GetComponent<Text>().text;
         GetAdvText3 = inputField6.GetComponent<Text>().text;
     }
-    public void GetDevInvest()
+    public void GetAdvInvest()
     {
         int.TryParse(GetAdvText1, out InputAdvInt4);
         int.TryParse(GetAdvText2, out InputAdvInt5);
